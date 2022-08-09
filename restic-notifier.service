@@ -1,0 +1,10 @@
+[Unit]
+Description=Restic Pushover notifications
+
+[Service]
+ExecStart=/opt/restic-notifier/restic-notifier.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
