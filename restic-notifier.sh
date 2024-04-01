@@ -20,16 +20,16 @@ source "${DIR}/pushover.env"
 
 # Read FIFO file and send notifications
 while [[ -e "${QUEUE}" ]]; do
-  while read line; do
+  while read -r line; do
     curl --silent \
       --connect-timeout 30 \
       --retry 300 \
       --retry-delay 60 \
       --form-string "token=${APP_TOKEN}" \
       --form-string "user=${USER_KEY}" \
-      --form-string "title=Backup on $(hostname)" \
+      --form-string "title=Backup on $(cat /etc/hostname)" \
       --form-string "message=${line}" \
       https://api.pushover.net/1/messages.json
     sleep 10
-  done < $QUEUE
+  done < "${QUEUE}"
 done
