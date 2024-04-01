@@ -27,7 +27,7 @@ while [[ -e "${QUEUE}" ]]; do
       --retry-delay 60 \
       --form-string "token=${APP_TOKEN}" \
       --form-string "user=${USER_KEY}" \
-      --form-string "title=Backup on ${hostname}" \
+      --form-string "title=Backup on $(hostname)" \
       --form-string "message=${line}" \
       https://api.pushover.net/1/messages.json
     sleep 10
